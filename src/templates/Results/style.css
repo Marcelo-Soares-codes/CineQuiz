@@ -1,0 +1,73 @@
+.results-container {
+  text-align: center;
+}
+
+.results-container h1 {
+  font-size: 1.8rem;
+  margin: 40px 0;
+}
+
+.answers-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+/* Estilizando o track do scroll */
+.answers-list::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Estilizando o handle/thumb do scroll */
+.answers-list::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 8px;
+}
+
+/* Estilizando a borda do scroll */
+.answers-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.answer-item {
+  background-color: #040129;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 250px;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transições apropriadas */
+}
+
+.answer-item h2 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+.answer-item p {
+  margin: 15px 0;
+}
+
+.answer-item:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Efeito de sombra ao passar o mouse */
+}
+
+.accuracy-info {
+  margin-top: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

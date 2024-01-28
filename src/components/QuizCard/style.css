@@ -1,0 +1,48 @@
+/* style.css */
+
+.containerQuizCard {
+  display: flex;
+  flex-direction: column; /* Alterado para layout de coluna */
+  max-width: 400px;
+  min-width: 25%;
+  min-height: 200px;
+  background-color: #040129;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  color: #fff;
+  margin: 20px;
+}
+
+.containerQuizCard h1 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.containerQuizCard p {
+  font-size: 0.9rem;
+  margin: 8px 0;
+}
+
+.answers {
+  margin: 40px 0 20px;
+}
+
+.answers input {
+  background-color: #00ccff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.answers input:hover {
+  background-color: #0077b6;
+}

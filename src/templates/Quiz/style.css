@@ -1,0 +1,11 @@
+/* style.css */
+
+.containerQuiz {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  height: 100vh; /* 100% da altura da viewport (janela do navegador) */
+}
+
+/* Adicione estilos adicionais conforme necessário para .containerQuiz ou outros elementos dentro dela. */

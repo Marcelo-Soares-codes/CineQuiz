@@ -1,0 +1,41 @@
+/* style.css */
+
+.containerHeader {
+  background-color: #040129; /* Cor de fundo */
+  color: #fff; /* Cor do texto */
+  padding: 20px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra suave */
+}
+
+.containerHeader h1 {
+  font-size: 40px;
+  margin: 0; /* Remover margens padrão do h1 */
+}
+
+.containerHeader nav {
+  margin-top: 15px; /* Espaçamento acima da navegação */
+}
+
+.containerHeader ul {
+  list-style: none; /* Remover estilo de lista */
+  display: flex;
+  gap: 20px; /* Espaçamento entre os itens da lista */
+  justify-content: center; /* Centraliza os itens */
+}
+
+.containerHeader li {
+  cursor: pointer; /* Altera o cursor para indicar que é clicável */
+  font-weight: bold; /* Deixa o texto em negrito */
+  transition: color 0.3s; /* Adiciona transição suave de cor */
+}
+
+.containerHeader li:hover {
+  color: #00ccff; /* Cor ao passar o mouse sobre os itens */
+}
+
+/* Estilo para o Link do React Router */
+.containerHeader a {
+  text-decoration: none;
+  color: inherit;
+}
