@@ -21,7 +21,7 @@ Certifique-se de ter [Node.js](https://nodejs.org/) instalado.
 Explique como usar o seu projeto. Forneça exemplos se necessário.
 
 ```bash
-npm start
+npm run dev
 
 ```
 
