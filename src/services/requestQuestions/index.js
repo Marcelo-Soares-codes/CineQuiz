@@ -1,17 +1,18 @@
-// requestQuestions.js
-
 import axios from 'axios';
 
-const url = {
-  baseUrl: 'https://the-trivia-api.com/v2/questions/',
-};
+const baseUrl = 'https://the-trivia-api.com/v2/questions/';
 
-export const RequestQuestion = async () => {
+/**
+ * Fetches quiz questions from the Trivia API.
+ *
+ * @returns {Promise<object>} A promise resolving to an array of quiz question objects.
+ */
+export const fetchQuizQuestions = async () => {
   try {
-    const response = await axios.get(url.baseUrl);
+    const response = await axios.get(baseUrl);
     return response.data;
   } catch (error) {
-    console.error('Erro na requisição:', error);
-    throw error; // Lança o erro para que possa ser tratado no componente
+    console.error('Error fetching quiz questions:', error);
+    throw error; // Rethrow the error for handling in the calling component
   }
 };

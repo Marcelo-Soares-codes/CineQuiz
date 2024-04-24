@@ -1,35 +1,48 @@
-export const DataQuestionsProcessing = (dataQuestions) => {
-  const newDataQuestions = [];
+/**
+ * Processes quiz data by removing duplicates, randomizing alternatives,
+ * and restructuring the data format.
+ *
+ * @param {array} dataQuestions - An array of raw quiz question objects.
+ *
+ * @returns {object} An object containing processed quiz data and the original data.
+ *  - newDataQuestions: An array of processed quiz question objects.
+ *  - dataQuestions: The original unprocessed data (for potential reference).
+ */
+export const processQuizData = (dataQuestions) => {
+  const processedQuestions = []; // Use a more descriptive variable name
 
   if (!dataQuestions) {
-    console.log('Ops, parece que não foi recebido nenhum dado!');
+    console.warn('No quiz data received!'); // Use console.warn for non-critical warnings
   } else {
-    function removeDuplicates(array) {
-      return Array.from(new Set(array));
-    }
-
-    const randomAlternatives = (alternatives, correct) => {
-      //console.log('alternatives is:', alternatives, 'correct is:', correct);
-      const randomIndex = Math.floor(Math.random() * (alternatives.length + 1));
-      const newAlternatives = [...alternatives.slice(0, randomIndex), correct, ...alternatives.slice(randomIndex)];
-      return removeDuplicates(newAlternatives);
-    };
-
     try {
       dataQuestions.forEach((question, index) => {
-        newDataQuestions.push({
+        processedQuestions.push({
           id: question.id,
-          question: question.question.text,
+          question: question.question.text, // Assuming "text" is the property containing the question text
           category: question.category,
           difficulty: question.difficulty,
-          alternatives: randomAlternatives(question.incorrectAnswers, question.correctAnswer),
+          alternatives: randomizeAlternatives(question.incorrectAnswers, question.correctAnswer),
           correctAnswer: question.correctAnswer,
         });
       });
     } catch (error) {
-      console.log('Parece que ocorreu um erro: ', error);
+      console.error('Error processing quiz data:', error); // Use console.error for critical errors
     }
   }
 
-  return { newDataQuestions: newDataQuestions, dataQuestions: dataQuestions };
+  return { processedQuestions, originalData: dataQuestions }; // Rename `newDataQuestions` and provide original data
+};
+
+/**
+ * Randomizes the order of answer alternatives, ensuring the correct answer is included.
+ *
+ * @param {array} incorrectAnswers - An array of incorrect answer strings.
+ * @param {string} correctAnswer - The correct answer string.
+ *
+ * @returns {array} A new array with shuffled alternatives, including the correct answer.
+ */
+const randomizeAlternatives = (incorrectAnswers, correctAnswer) => {
+  const alternatives = [...incorrectAnswers, correctAnswer];
+  alternatives.sort(() => Math.random() - 0.5); // More efficient in-place shuffle
+  return alternatives;
 };

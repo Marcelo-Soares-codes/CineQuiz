@@ -1,7 +1,13 @@
 import './style.css';
-
 import { Link } from 'react-router-dom';
 
+/**
+ * Renders the header component for the CineQuiz application.
+ *
+ * Provides navigation links to Home, Quiz, and Results pages.
+ *
+ * @returns {JSX.Element} The header component.
+ */
 export const Header = () => {
   return (
     <header className="containerHeader">

@@ -1,28 +1,37 @@
-// Home.js
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importe o Link
+import { Link } from 'react-router-dom';
 import './styles.css';
 import { Header } from '../../components/Header';
 import { useQuizContext } from '../../context/QuizContext';
-import { DataQuestionsProcessing } from '../../services/dataProcessing';
+import { processQuizData } from '../../services/dataProcessing';
 
+/**
+ * Renders the Home page of the CineQuiz application.
+ *
+ * Displays a "Start" button to navigate to the quiz when data is loaded.
+ *
+ * @returns {JSX.Element} The Home page component.
+ */
 function Home() {
-  const { questionData } = useQuizContext();
+  const { questionData, originalData } = useQuizContext(); // Destructure originalData
 
   if (!questionData) {
-    // Se questionData ainda não está definido (assíncrono), você pode mostrar um indicador de carregamento ou retornar null
+    // Show a loading indicator while waiting for data
     return (
       <div className="containerHome">
-        <p>Carregando...</p>
+        <p>Loading...</p>
       </div>
     );
   }
 
-  // Agora, questionData está definido e você pode usá-lo sem problemas
+  // Process data once it's available
+  const processedData = processQuizData(originalData); // Rename `newDataQuestions` to `processedData`
+
   return (
     <div className="containerHome">
+      <Header />
       <Link to="/quiz">
-        <button className="buttonStart">Start</button>
+        <button className="buttonStart">Start Quiz</button>
       </Link>
     </div>
   );

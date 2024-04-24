@@ -1,56 +1,52 @@
-// Results.jsx
-
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 
 const Results = () => {
-  const [answers, setAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState([]); // More descriptive name
   const [highlightedIndex, setHighlightedIndex] = useState(null);
   const highlightedCardRef = useRef(null);
 
   useEffect(() => {
-    // Obter respostas salvas no localStorage
-    const savedAnswers = JSON.parse(localStorage.getItem('quizAnswers')) || [];
-    setAnswers(savedAnswers);
+    // Retrieve saved answers from localStorage
+    const storedAnswers = JSON.parse(localStorage.getItem('quizAnswers')) || [];
+    setUserAnswers(storedAnswers);
   }, []);
 
   const calculateAccuracyPercentage = () => {
-    const totalQuestions = answers.length;
-    const correctAnswers = answers.filter((answer) => answer.isCorrect).length;
+    const totalQuestions = userAnswers.length;
+    const correctAnswers = userAnswers.filter((answer) => answer.isCorrect).length;
     const accuracyPercentage = (correctAnswers / totalQuestions) * 100;
     return accuracyPercentage.toFixed(2);
   };
 
   return (
     <div className="results-container">
-      <h1>Resultados do Quiz</h1>
+      <h1>Quiz Results</h1>
 
-      {answers.length > 0 ? (
+      {userAnswers.length > 0 ? (
         <div>
           <ul className="answers-list">
-            {answers.map((answer, index) => {
-              return (
-                <li key={answer.question} className="answer-item">
-                  <h2>Question {index + 1}</h2>
-                  <p>{`Pergunta: ${answer.question}`}</p>
-                  <p>{`Resposta Escolhida: ${answer.selectedAnswer}`}</p>
-                  <p>{`Resposta Correta: ${answer.correctAnswer}`}</p>
-                  <p>{`Resultado: ${answer.isCorrect ? 'Correta' : 'Incorreta'}`}</p>
-                </li>
-              );
-            })}
+            {userAnswers.map((answer, index) => (
+              <li key={answer.question} className="answer-item">
+                <h2>Question {index + 1}</h2>
+                <p>Question: {answer.question}</p>
+                <p>Your Answer: {answer.selectedAnswer}</p>
+                <p>Correct Answer: {answer.correctAnswer}</p>
+                <p>Result: {answer.isCorrect ? 'Correct' : 'Incorrect'}</p>
+              </li>
+            ))}
           </ul>
           <div className="accuracy-info">
-            <p>{`Você acertou ${calculateAccuracyPercentage()}% das perguntas.`}</p>
+            <p>You answered {calculateAccuracyPercentage()}% of questions correctly.</p>
           </div>
         </div>
       ) : (
-        <p>Nenhum resultado disponível. Talvez você ainda não tenha feito o quiz.</p>
+        <p>No results available. Take the quiz to see your results!</p>
       )}
 
       <Link to="/" className="back-link">
-        Voltar para a página inicial
+        Return to Home Page
       </Link>
     </div>
   );

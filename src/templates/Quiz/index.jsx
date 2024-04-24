@@ -1,62 +1,61 @@
-// Quiz.jsx
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 import { QuizCard } from '../../components/QuizCard';
 import { useQuizContext } from '../../context/QuizContext';
-import { DataQuestionsProcessing } from '../../services/dataProcessing/index';
+import { processQuizData } from '../../services/dataProcessing'; // Assuming this is the renamed function
 
 const Quiz = () => {
-  const { questionData } = useQuizContext();
-  const { newDataQuestions } = DataQuestionsProcessing(questionData);
+  const { questionData, originalData } = useQuizContext();
   const navigate = useNavigate();
 
+  const [processedData, setProcessedData] = useState(null); // Rename `newDataQuestions`
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState([]); // More descriptive name
+
+  useEffect(() => {
+    if (questionData && !processedData) {
+      setProcessedData(processQuizData(originalData)); // Process data once available
+    }
+  }, [questionData, originalData, processedData, processQuizData]);
 
   const handleAnswerClick = (answer) => {
-    // Salvar resposta no estado
-    setAnswers([
-      ...answers,
+    setUserAnswers([
+      ...userAnswers,
       {
-        question: newDataQuestions[currentQuestionIndex].question,
+        question: processedData[currentQuestionIndex].question,
         selectedAnswer: answer,
-        correctAnswer: newDataQuestions[currentQuestionIndex].correctAnswer,
-        isCorrect: answer === newDataQuestions[currentQuestionIndex].correctAnswer,
+        correctAnswer: processedData[currentQuestionIndex].correctAnswer,
+        isCorrect: answer === processedData[currentQuestionIndex].correctAnswer,
       },
     ]);
 
-    // Avançar para a próxima pergunta
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   useEffect(() => {
-    // Verificar se todas as perguntas foram respondidas
-    if (currentQuestionIndex === newDataQuestions.length) {
-      // Salvar respostas no localStorage
-      localStorage.setItem('quizAnswers', JSON.stringify(answers));
-
-      // Redirecionar para /results
+    if (currentQuestionIndex === processedData?.length) {
+      // Handle potential undefined processedData
+      localStorage.setItem('quizAnswers', JSON.stringify(userAnswers));
       navigate('/results');
     }
-  }, [currentQuestionIndex, newDataQuestions, answers, navigate]);
+  }, [currentQuestionIndex, processedData, userAnswers, navigate]);
 
   return (
     <div className="containerQuiz">
-      {newDataQuestions && currentQuestionIndex < newDataQuestions.length ? (
+      {processedData && currentQuestionIndex < processedData.length ? (
         <div className="quiz-card">
           <QuizCard
-            key={newDataQuestions[currentQuestionIndex].id}
-            question={newDataQuestions[currentQuestionIndex].question}
-            category={newDataQuestions[currentQuestionIndex].category}
-            difficulty={newDataQuestions[currentQuestionIndex].difficulty}
-            alternatives={newDataQuestions[currentQuestionIndex].alternatives}
+            key={processedData[currentQuestionIndex].id}
+            question={processedData[currentQuestionIndex].question}
+            category={processedData[currentQuestionIndex].category}
+            difficulty={processedData[currentQuestionIndex].difficulty}
+            alternatives={processedData[currentQuestionIndex].alternatives}
             onAnswerClick={handleAnswerClick}
           />
         </div>
       ) : (
-        <h1 className="loading-message">Carregando...</h1>
+        <h1 className="loading-message">Loading...</h1>
       )}
     </div>
   );
