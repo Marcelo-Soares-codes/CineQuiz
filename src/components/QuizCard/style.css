@@ -6,7 +6,7 @@
   max-width: 400px;
   min-width: 25%;
   min-height: 200px;
-  background-color: #040129;
+  background-color: #6d0307;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 8px;
@@ -31,10 +31,10 @@
 }
 
 .answers input {
-  background-color: #00ccff;
+  background-color: rgb(66, 6, 8);
   color: #fff;
   border: none;
-  padding: 8px 12px;
+  padding: 12px 12px;
   border-radius: 4px;
   cursor: pointer;
   outline: none;
@@ -44,5 +44,5 @@
 }
 
 .answers input:hover {
-  background-color: #0077b6;
+  background-color: #ee0f13;
 }

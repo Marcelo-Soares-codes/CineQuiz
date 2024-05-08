@@ -1,7 +1,7 @@
 /* style.css */
 
 .containerHeader {
-  background-color: #040129; /* Cor de fundo */
+  background-color: #6d0307; /* Cor de fundo */
   color: #fff; /* Cor do texto */
   padding: 20px; /* Espaçamento interno */
   text-align: center; /* Centraliza o texto */
@@ -31,7 +31,7 @@
 }
 
 .containerHeader li:hover {
-  color: #00ccff; /* Cor ao passar o mouse sobre os itens */
+  color: #c54239; /* Cor ao passar o mouse sobre os itens */
 }
 
 /* Estilo para o Link do React Router */

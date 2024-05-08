@@ -9,16 +9,16 @@
 }
 
 .buttonStart {
-  background-color: #007bff;
+  background-color: #6d0307;
   color: #fff;
-  padding: 15px 30px;
-  font-size: 1.5rem;
+  padding: 20px 60px;
+  font-size: 1.7rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .buttonStart:hover {
-  background-color: #0056b3;
+  background-color: #9c0005;
 }

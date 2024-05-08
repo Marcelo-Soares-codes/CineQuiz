@@ -1,5 +1,6 @@
 .results-container {
   text-align: center;
+  min-height: 80vh;
 }
 
 .results-container h1 {
@@ -9,7 +10,7 @@
 
 .answers-list {
   list-style: none;
-  padding: 0;
+  padding: 20px;
   margin: 0;
   display: flex;
   gap: 16px;
@@ -35,7 +36,7 @@
 }
 
 .answer-item {
-  background-color: #040129;
+  background-color: #6d0307;
   border: 2px solid #ddd;
   border-radius: 8px;
   padding: 16px;
@@ -65,7 +66,7 @@
   display: inline-block;
   margin-top: 20px;
   text-decoration: none;
-  color: #007bff;
+  color: rgb(0, 26, 170);
 }
 
 .back-link:hover {

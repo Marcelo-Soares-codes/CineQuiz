@@ -1,6 +1,14 @@
 # CineQuiz
 
+![Meu Momento](./public/screen-quiz.png)
+
+## Descrição
+
 Projeto realizado em react para estudo pessoal. O projeto é consome a api https://the-trivia-api.com/ e retorna uma interface de perguntas e resposta. A principio o app mostra 10 questões, uma seguida da outra, assim que o usuário responder-las ele lhe mostra o resultado com a porcentagem de acerto e cada questão correta e incorreta
+
+## Acesse o App
+
+Você pode acessar o app [aqui](https://cinequiz.netlify.app/).
 
 ## Conteúdo
 

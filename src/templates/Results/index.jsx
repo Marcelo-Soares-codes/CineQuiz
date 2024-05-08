@@ -24,7 +24,7 @@ const Results = () => {
 
   return (
     <div className="results-container">
-      <h1>Resultados do Quiz</h1>
+      <h1>Quiz Results</h1>
 
       {answers.length > 0 ? (
         <div>
@@ -33,24 +33,26 @@ const Results = () => {
               return (
                 <li key={answer.question} className="answer-item">
                   <h2>Question {index + 1}</h2>
-                  <p>{`Pergunta: ${answer.question}`}</p>
-                  <p>{`Resposta Escolhida: ${answer.selectedAnswer}`}</p>
-                  <p>{`Resposta Correta: ${answer.correctAnswer}`}</p>
-                  <p>{`Resultado: ${answer.isCorrect ? 'Correta' : 'Incorreta'}`}</p>
+                  <p>{`Question: ${answer.question}`}</p>
+                  <p>{`Chosen Answer: ${answer.selectedAnswer}`}</p>
+                  <p>{`Right answer: ${answer.correctAnswer}`}</p>
+                  <p>{`Result: ${answer.isCorrect ? 'Correct' : 'Incorrect'}`}</p>
                 </li>
               );
             })}
           </ul>
           <div className="accuracy-info">
-            <p>{`Você acertou ${calculateAccuracyPercentage()}% das perguntas.`}</p>
+            <p>{`You got ${calculateAccuracyPercentage()}% of the questions correct.`}</p>
           </div>
         </div>
       ) : (
-        <p>Nenhum resultado disponível. Talvez você ainda não tenha feito o quiz.</p>
+        <div className="">
+          <p>No results available. Maybe you haven't taken the quiz yet.</p>
+        </div>
       )}
 
       <Link to="/" className="back-link">
-        Voltar para a página inicial
+        Return to home page
       </Link>
     </div>
   );
