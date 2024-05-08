@@ -27,6 +27,7 @@ const Results = () => {
       {userAnswers.length > 0 ? (
         <div>
           <ul className="answers-list">
+<<<<<<< HEAD
             {userAnswers.map((answer, index) => (
               <li key={answer.question} className="answer-item">
                 <h2>Question {index + 1}</h2>
@@ -47,6 +48,32 @@ const Results = () => {
 
       <Link to="/" className="back-link">
         Return to Home Page
+=======
+            {answers.map((answer, index) => {
+              return (
+                <li key={answer.question} className="answer-item">
+                  <h2>Question {index + 1}</h2>
+                  <p>{`Question: ${answer.question}`}</p>
+                  <p>{`Chosen Answer: ${answer.selectedAnswer}`}</p>
+                  <p>{`Right answer: ${answer.correctAnswer}`}</p>
+                  <p>{`Result: ${answer.isCorrect ? 'Correct' : 'Incorrect'}`}</p>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="accuracy-info">
+            <p>{`You got ${calculateAccuracyPercentage()}% of the questions correct.`}</p>
+          </div>
+        </div>
+      ) : (
+        <div className="">
+          <p>No results available. Maybe you haven't taken the quiz yet.</p>
+        </div>
+      )}
+
+      <Link to="/" className="back-link">
+        Return to home page
+>>>>>>> main
       </Link>
     </div>
   );
